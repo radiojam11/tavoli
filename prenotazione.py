@@ -19,13 +19,23 @@
 
 
 
-# serataFull = 65  ( se gia' prenotato il 65% dei tavoli ) 
 from time import time , ctime
 from math import modf
+from testo import banner 
 
+# gestione del tempo
+# now = time.ctime()
+# parsed = time.strptime(now)
+# print(time.strftime("%a %b %d %H:%M:%S %Y", parsed))
+
+
+# serataFull = 65  ( se gia' prenotato il 65% dei tavoli ) 
 serataFull = 70
+
 # tempo_s = 1  #espresso in ore.minuti cioe' (ore 1 e minuti 45 = 1.45)
+# variabile da locale a locale ( es. pizzeria 50 minuti - ristorante alla carta 2ore)
 def servizio(tempo_s):
+    """Ritorna il conteggio del tempo del servizio (passato come ore.minuti) in numero di secondi """
     minuti, ore = modf(tempo_s)
     return ore*3600+(int(minuti*100)*60)
 
@@ -48,20 +58,27 @@ class Cliente():
         self.id = id
 
 
-
-print(servizio(0.30))
-
-
-
-
-
-
-
-cliente = Cliente(nome="mario")
-print(cliente.nome, cliente.social["twitter"])
+class Cameriere():
+    def __init__(self, nome="", cognome="", id=None, tavoli=[]):
+        self.nome = nome
+        self.cognome = cognome
+        self.id = id
+        self.tavoli = tavoli
 
 
+class Prenotazioni():
+    def __init__(self, id=None, tavolo=None, ora=None):
+    pass
 
-t = time()
-print(t)
-print(ctime(int(t)))
+
+
+def main():
+    print(banner)
+    t = time()
+    print(t)
+    print(ctime(int(t)))
+
+
+
+if __name__ == '__main__':
+	main()
